@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Glam Movie Studio</title>
+<meta name="description" content="Glam Movie Studio is Glam Hustle Hub's own production studio: director's treatments, casting, wardrobe, music, filming with the Film Crew Farm, the Dex QC gate, and premieres on Glam TV.">
+<meta name="theme-color" content="#0a1a40">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--deep:#0a1a40;--teal:#39c2d7;--pearl:#fafaff;--chrome:#cfd8e6;--gold:#f3d27a}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--pearl);min-height:100vh;padding-bottom:118px;background:radial-gradient(1200px 500px at 50% -80px,#1d4e89,#0a1a40 55%,#071233);overflow-x:hidden}
+.sparkle{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(2px 2px at 12% 22%,#fff,transparent),radial-gradient(1.5px 1.5px at 82% 12%,#ffe9a8,transparent),radial-gradient(2px 2px at 64% 34%,#fff,transparent),radial-gradient(1.5px 1.5px at 28% 58%,#bfe9ff,transparent),radial-gradient(2px 2px at 90% 66%,#fff,transparent),radial-gradient(1.5px 1.5px at 8% 84%,#ffe9a8,transparent);animation:tw 3.2s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.45}to{opacity:1}}
+.fly{position:fixed;font-size:22px;z-index:0;pointer-events:none;animation:float 9s ease-in-out infinite;opacity:.85}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+@keyframes pulse{50%{opacity:.3}}
+main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 14px}
+.hero{margin-top:14px;border-radius:20px;border:2px solid rgba(243,210,122,.55);box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 34px rgba(57,194,215,.25);background:linear-gradient(100deg,#081638,#123a7a 70%,#0e5f74);padding:22px 18px;text-align:center}
+.kicker{font-size:12px;letter-spacing:3px;color:var(--gold);font-weight:800}
+h1{font-size:48px;line-height:1.02;font-weight:900;background:linear-gradient(92deg,#fff 10%,#9fd8ff 45%,var(--gold) 75%,#fff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.onair{display:inline-flex;align-items:center;gap:7px;margin-top:11px;background:#7a1fa2;color:#fff;font-weight:900;letter-spacing:2px;font-size:12px;padding:6px 11px;border-radius:8px;box-shadow:0 0 18px rgba(180,80,255,.55)}
+.onair i{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.4s infinite}
+.hero p{margin:11px auto 0;color:#e8f2ff;font-size:14.5px;line-height:1.5;max-width:460px}
+.hero p b{color:#fff}
+@media(max-width:560px){h1{font-size:38px}}
+.tabs{display:flex;gap:8px;margin:16px 0 4px;position:sticky;top:8px;z-index:5}
+.tabs button{flex:1;padding:12px 2px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(10,26,64,.92);color:var(--pearl);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+.tabs button.on{background:linear-gradient(90deg,#2f7fe0,#39c2d7);border-color:transparent;box-shadow:0 6px 20px rgba(57,194,215,.4)}
+.screen{display:none;padding-top:12px}
+.screen.on{display:block}
+h2{font-size:20px;margin:6px 0 10px}
+.sub{color:var(--chrome);font-size:13.5px;margin:-4px 0 14px;line-height:1.5}
+.pipe{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px}
+.num{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2f7fe0,#39c2d7);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;box-shadow:0 0 14px rgba(57,194,215,.45)}
+.step h3{font-size:16.5px;margin-bottom:3px}
+.step p{font-size:13.5px;color:var(--chrome);line-height:1.45}
+.step a{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.5px;padding:7px 11px;border-radius:99px;background:var(--gold);color:#3a2a04;text-decoration:none}
+.bigcard{border-radius:18px;padding:20px;text-align:center;border:1px solid rgba(243,210,122,.55);background:linear-gradient(120deg,#123a7a,#0e5f74);box-shadow:0 0 30px rgba(57,194,215,.22);margin-bottom:12px}
+.bigcard .em{font-size:44px}
+.bigcard h3{font-size:22px;margin:8px 0 6px}
+.bigcard p{color:#e6f3ff;font-size:14.5px;line-height:1.55;max-width:480px;margin:0 auto}
+.bigbtn{display:inline-block;margin-top:14px;background:linear-gradient(90deg,#2f7fe0,#39c2d7);color:#fff;font-weight:900;font-size:16px;padding:14px 22px;border-radius:12px;text-decoration:none;box-shadow:0 8px 24px rgba(57,194,215,.4)}
+.card{display:block;text-decoration:none;color:var(--pearl);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);margin-bottom:11px}
+.card .body{padding:14px}
+.card h3{font-size:17px;margin-bottom:4px}
+.card p{font-size:13.5px;color:var(--chrome);line-height:1.45}
+.badge{display:inline-block;margin-top:9px;font-size:11px;font-weight:800;letter-spacing:1px;padding:5px 9px;border-radius:99px;background:var(--teal);color:#04263b}
+.badge.soon{background:rgba(255,255,255,.18);color:var(--pearl)}
+label{display:block;font-size:13px;font-weight:800;letter-spacing:.5px;margin:13px 0 6px;color:var(--gold)}
+input,select,textarea{width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:var(--pearl);font-size:15px;font-family:inherit}
+select option{color:#0a1a40}
+textarea.out{margin-top:14px;min-height:250px;font-size:13.5px;line-height:1.55;background:rgba(0,0,0,.35)}
+.buildbtn{width:100%;margin-top:16px;padding:15px;border:0;border-radius:12px;background:linear-gradient(90deg,#2f7fe0,#39c2d7);color:#fff;font-weight:900;font-size:16.5px;cursor:pointer;font-family:inherit;box-shadow:0 8px 24px rgba(57,194,215,.35)}
+.copybtn{width:100%;margin-top:9px;padding:13px;border-radius:12px;background:rgba(243,210,122,.16);border:1px solid var(--gold);color:var(--gold);font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
+footer{position:fixed;left:0;right:0;bottom:0;background:rgba(7,18,51,.97);border-top:1px solid rgba(243,210,122,.35);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px;z-index:9}
+footer a{flex:1;text-align:center;text-decoration:none;font-weight:800;font-size:15px;padding:13px 8px;border-radius:12px}
+.join{background:linear-gradient(90deg,#2f7fe0,#39c2d7);color:#fff}
+.shop{background:rgba(255,255,255,.1);color:var(--pearl);border:1px solid rgba(255,255,255,.25)}
+.credit{text-align:center;color:rgba(255,255,255,.45);font-size:12px;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="sparkle"></div>
+<div class="fly" style="top:130px;left:4%">🦋</div>
+<div class="fly" style="top:460px;right:4%;animation-delay:-4s">🦋</div>
+<main>
+  <div class="hero">
+    <div class="kicker">GLAM HUSTLE HUB PRESENTS</div>
+    <h1>🎬 Glam Movie Studio</h1>
+    <span class="onair"><i></i>NOW FILMING</span>
+    <p>Her own production studio — <b>treatment to premiere, all under one roof.</b> The crew, the wardrobe, the music and the QC gate she already owns, working in order.</p>
+  </div>
+
+  <nav class="tabs">
+    <button class="on" data-s="floor">🎬 Studio Floor</button>
+    <button data-s="treatment">✍️ Treatment</button>
+    <button data-s="crew">🎥 Film Crew</button>
+    <button data-s="premieres">🌟 Premieres</button>
+  </nav>
+
+  <section class="screen on" id="s-floor">
+    <h2>🎬 The Production Pipeline</h2>
+    <p class="sub">Every Glam production walks these 7 steps in order. No step gets skipped — that's how the quality stays up.</p>
+    <div class="pipe">
+      <div class="step"><div class="num">1</div><div><h3>Director's Treatment</h3><p>Every video starts with the full treatment first — concept, script, shot-by-shot, look &amp; feel, music &amp; sound — before anything is built.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Script Locked</h3><p>The script is locked word-for-word before filming. One speaker per shot, every line spoken once — no invented lines on set.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>Casting</h3><p>Cast from her locked character sheets only — every named character's photo goes into the production, even for offscreen voices. Five fingers, one consistent age, frame by frame.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>Wardrobe</h3><p>Style the cast in Dress My Twin by Glam — outfits change, faces and bodies never do.</p><a href="https://nakeymasi-coder.github.io/ai-twin-closet/" target="_blank" rel="noopener">OPEN DRESS MY TWIN →</a></div></div>
+      <div class="step"><div class="num">5</div><div><h3>Music</h3><p>Every production gets a real music bed — made in Song Studio, never silent, never a plain tone.</p><a href="https://nakeymasi-coder.github.io/glam-song-studio/" target="_blank" rel="noopener">OPEN SONG STUDIO →</a></div></div>
+      <div class="step"><div class="num">6</div><div><h3>Filming</h3><p>The Film Crew Farm does the filming — her 12-agent crew takes the locked script and shoots it scene by scene.</p><a href="https://nakeymasi-coder.github.io/film-crew-farm/" target="_blank" rel="noopener">OPEN FILM CREW FARM →</a></div></div>
+      <div class="step"><div class="num">7</div><div><h3>Dex QC Gate → Premiere</h3><p>Dex Sterling, Director of Quality, checks the finished cut end to end. Only a clean cut premieres — on Glam TV.</p><a href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener">WATCH ON GLAM TV →</a></div></div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-treatment">
+    <h2>✍️ Director's Treatment Builder</h2>
+    <p class="sub">Fill in the bones of your next production and tap Build — you get a formatted treatment, ready to hand to the crew.</p>
+    <label for="fTitle">MOVIE TITLE</label>
+    <input id="fTitle" placeholder="e.g. The Grape Divide">
+    <label for="fKind">WHAT KIND</label>
+    <select id="fKind">
+      <option>Movie</option>
+      <option>Skit</option>
+      <option>Commercial</option>
+      <option>Series Episode</option>
+    </select>
+    <label for="fLog">LOGLINE (ONE SENTENCE)</label>
+    <input id="fLog" placeholder="e.g. Two sisters learn a crown don't fit by shrinking.">
+    <label for="fChars">MAIN CHARACTERS</label>
+    <input id="fChars" placeholder="e.g. Ruby, Pearl">
+    <label for="fLook">LOOK &amp; FEEL</label>
+    <input id="fLook" placeholder="e.g. Golden-hour porch, warm and cinematic">
+    <label for="fMusic">MUSIC / SOUND</label>
+    <input id="fMusic" placeholder="e.g. Soft soul bed under dialogue, real music">
+    <button class="buildbtn" id="buildBtn">🎬 Build My Treatment</button>
+    <textarea class="out" id="out" readonly placeholder="Your Director's Treatment will appear here…"></textarea>
+    <button class="copybtn" id="copyBtn">📋 Copy Treatment</button>
+  </section>
+
+  <section class="screen" id="s-crew">
+    <div class="bigcard">
+      <div class="em">🎥</div>
+      <h3>Your Filming Engine Is Already Built</h3>
+      <p>The Film Crew Agent Farm — your 12-agent crew (Scout, Script, Casting, Storyboard, Image, Camera, Voice, Sound, Editor, Color, QC Director, Caption &amp; Posting) — creates real movies, skits and commercials from your locked treatments. No starting from scratch.</p>
+      <a class="bigbtn" href="https://nakeymasi-coder.github.io/film-crew-farm/" target="_blank" rel="noopener">🎬 Open the Film Crew Farm</a>
+    </div>
+    <a class="card" href="https://nakeymasi-coder.github.io/Funny-Family-Comic-Scene-Prompt-Generator/" target="_blank" rel="noopener"><div class="body"><h3>😂 Funny Family Comic Scene Generator</h3><p>For skits — build the funny family scene, get the prompt, then send it to the crew to film.</p><span class="badge">OPEN THE SKIT GENERATOR</span></div></a>
+  </section>
+
+  <section class="screen" id="s-premieres">
+    <h2>🌟 Now Showing</h2>
+    <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/fruit-bowl-secrets.html" target="_blank" rel="noopener"><div class="body"><h3>🍓 Fruit Bowl Secrets</h3><p>Pippa, Berry &amp; Gigi — the little kitchen crew with big secrets. Episodes playing on the show page.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
+    <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/crystal-heart.html" target="_blank" rel="noopener"><div class="body"><h3>💎 The Crystal Heart</h3><p>Scarlett &amp; Rune — a snowy adventure about a brave heart and the friend who guards it.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
+    <a class="card" href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener"><div class="body"><h3>📺 Glam TV</h3><p>Watch everything in one place — her own station, playing her shows 24/7.</p><span class="badge">WATCH GLAM TV</span></div></a>
+    <h2>🔜 Coming Soon</h2>
+    <div class="card"><div class="body"><h3>👑 Ruby &amp; Pearl</h3><p>Two sisters, one crown, and learning never to shrink.</p><span class="badge soon">COMING SOON</span></div></div>
+    <div class="card"><div class="body"><h3>🎬 Second Act Studio</h3><p>Four friends in their 40s quit draining jobs and build a content studio of their own.</p><span class="badge soon">COMING SOON</span></div></div>
+    <div class="card"><div class="body"><h3>🎄 A Glam Carol</h3><p>Glam's holiday special — sparkle, heart, and a lesson in every light.</p><span class="badge soon">COMING SOON</span></div></div>
+  </section>
+
+  <p class="credit">Glam Movie Studio · A Glam Hustle Hub production house · Treatment first, always</p>
+</main>
+
+<footer>
+  <a class="join" href="https://glamhustlehub.com/products/the-glam-vault" target="_blank" rel="noopener">✨ Join The Glam Vault</a>
+  <a class="shop" href="https://glamhustlehub.com/shop" target="_blank" rel="noopener">🛍️ Shop Glam Hustle Hub</a>
+</footer>
+
+<script>
+function showScreen(name){
+ document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.s===name);});
+ document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.id==='s-'+name);});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){showScreen(b.dataset.s);};});
+function val(id){var v=document.getElementById(id).value.trim();return v||'—';}
+document.getElementById('buildBtn').onclick=function(){
+ var t=
+"DIRECTOR'S TREATMENT\n"+
+"====================\n\n"+
+"TITLE: "+val('fTitle')+"\n"+
+"FORMAT: "+val('fKind')+"\n"+
+"MAIN CHARACTERS: "+val('fChars')+"\n\n"+
+"CONCEPT / LOGLINE\n"+
+val('fLog')+"\n\n"+
+"SCRIPT\n"+
+"Script locked word-for-word before filming. One speaker per shot; every line spoken once, by one voice; no invented lines.\n\n"+
+"SHOT APPROACH\n"+
+"Shot-by-shot from the locked script, in the locked set. Every named character's reference photo is passed into every scene — including characters who are only heard. Finished cut verified end to end before delivery.\n\n"+
+"LOOK & FEEL\n"+
+val('fLook')+"\n\n"+
+"MUSIC / SOUND\n"+
+val('fMusic')+" — real music bed under the picture, soft ambient sound, never silent.\n\n"+
+"PRODUCTION PATH\n"+
+"1. Treatment (this document) → 2. Script locked → 3. Casting from locked character sheets → 4. Wardrobe in Dress My Twin → 5. Music in Song Studio → 6. Filming in the Film Crew Farm → 7. Dex QC Gate → Premiere on Glam TV.\n\n"+
+"A Glam Hustle Hub production.";
+ document.getElementById('out').value=t;
+};
+document.getElementById('copyBtn').onclick=function(){
+ var out=document.getElementById('out');
+ if(!out.value){out.focus();return;}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out.value);}
+ else{out.select();document.execCommand('copy');}
+ var b=document.getElementById('copyBtn');b.textContent='✅ Copied!';
+ setTimeout(function(){b.textContent='📋 Copy Treatment';},1800);
+};
+</script>
+</body>
+</html>
