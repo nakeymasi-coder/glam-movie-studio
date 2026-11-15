@@ -63,6 +63,16 @@ footer a{flex:1;text-align:center;text-decoration:none;font-weight:800;font-size
 .join{background:linear-gradient(90deg,#2f7fe0,#39c2d7);color:#fff}
 .shop{background:rgba(255,255,255,.1);color:var(--pearl);border:1px solid rgba(255,255,255,.25)}
 .credit{text-align:center;color:rgba(255,255,255,.45);font-size:12px;margin-top:24px}
+.progressbox{background:rgba(255,255,255,.06);border:1px solid rgba(243,210,122,.4);border-radius:14px;padding:13px 14px;margin-bottom:12px}
+.progresshead{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;font-weight:800;margin-bottom:9px}
+.progresshead span:last-child{color:var(--gold)}
+.progress{height:11px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2f7fe0,#39c2d7,var(--gold));border-radius:99px;transition:width .35s}
+.stepcheck{flex:0 0 auto;width:27px;height:27px;margin-top:5px;accent-color:#39c2d7;cursor:pointer}
+.slatecard{display:flex;gap:12px;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:13px 14px;margin-bottom:10px}
+.slatecard h3{font-size:16.5px;margin-bottom:2px}
+.slatecard p{font-size:13px;color:var(--chrome)}
+.slatecard .badge{margin-top:0;flex:0 0 auto}
 </style>
 </head>
 <body>
@@ -82,19 +92,21 @@ footer a{flex:1;text-align:center;text-decoration:none;font-weight:800;font-size
     <button data-s="treatment">✍️ Treatment</button>
     <button data-s="crew">🎥 Film Crew</button>
     <button data-s="premieres">🌟 Premieres</button>
+    <button data-s="slate">🗂️ Slate</button>
   </nav>
 
   <section class="screen on" id="s-floor">
     <h2>🎬 The Production Pipeline</h2>
-    <p class="sub">Every Glam production walks these 7 steps in order. No step gets skipped — that's how the quality stays up.</p>
+    <p class="sub">Every Glam production walks these 7 steps in order. No step gets skipped — that's how the quality stays up. Check each step off as you finish it.</p>
+    <div class="progressbox"><div class="progresshead"><span>✅ Production Checklist</span><span id="progLabel">0% ready to premiere</span></div><div class="progress"><i id="progBar"></i></div></div>
     <div class="pipe">
-      <div class="step"><div class="num">1</div><div><h3>Director's Treatment</h3><p>Every video starts with the full treatment first — concept, script, shot-by-shot, look &amp; feel, music &amp; sound — before anything is built.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h3>Script Locked</h3><p>The script is locked word-for-word before filming. One speaker per shot, every line spoken once — no invented lines on set.</p></div></div>
-      <div class="step"><div class="num">3</div><div><h3>Casting</h3><p>Cast from her locked character sheets only — every named character's photo goes into the production, even for offscreen voices. Five fingers, one consistent age, frame by frame.</p></div></div>
-      <div class="step"><div class="num">4</div><div><h3>Wardrobe</h3><p>Style the cast in Dress My Twin by Glam — outfits change, faces and bodies never do.</p><a href="https://nakeymasi-coder.github.io/ai-twin-closet/" target="_blank" rel="noopener">OPEN DRESS MY TWIN →</a></div></div>
-      <div class="step"><div class="num">5</div><div><h3>Music</h3><p>Every production gets a real music bed — made in Song Studio, never silent, never a plain tone.</p><a href="https://nakeymasi-coder.github.io/glam-song-studio/" target="_blank" rel="noopener">OPEN SONG STUDIO →</a></div></div>
-      <div class="step"><div class="num">6</div><div><h3>Filming</h3><p>The Film Crew Farm does the filming — her 12-agent crew takes the locked script and shoots it scene by scene.</p><a href="https://nakeymasi-coder.github.io/film-crew-farm/" target="_blank" rel="noopener">OPEN FILM CREW FARM →</a></div></div>
-      <div class="step"><div class="num">7</div><div><h3>Dex QC Gate → Premiere</h3><p>Dex Sterling, Director of Quality, checks the finished cut end to end. Only a clean cut premieres — on Glam TV.</p><a href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener">WATCH ON GLAM TV →</a></div></div>
+      <div class="step"><div class="num">1</div><input type="checkbox" class="stepcheck" aria-label="Mark step 1 done"><div><h3>Director's Treatment</h3><p>Every video starts with the full treatment first — concept, script, shot-by-shot, look &amp; feel, music &amp; sound — before anything is built.</p></div></div>
+      <div class="step"><div class="num">2</div><input type="checkbox" class="stepcheck" aria-label="Mark step 2 done"><div><h3>Script Locked</h3><p>The script is locked word-for-word before filming. One speaker per shot, every line spoken once — no invented lines on set.</p></div></div>
+      <div class="step"><div class="num">3</div><input type="checkbox" class="stepcheck" aria-label="Mark step 3 done"><div><h3>Casting</h3><p>Cast from her locked character sheets only — every named character's photo goes into the production, even for offscreen voices. Five fingers, one consistent age, frame by frame.</p></div></div>
+      <div class="step"><div class="num">4</div><input type="checkbox" class="stepcheck" aria-label="Mark step 4 done"><div><h3>Wardrobe</h3><p>Style the cast in Dress My Twin by Glam — outfits change, faces and bodies never do.</p><a href="https://nakeymasi-coder.github.io/ai-twin-closet/" target="_blank" rel="noopener">OPEN DRESS MY TWIN →</a></div></div>
+      <div class="step"><div class="num">5</div><input type="checkbox" class="stepcheck" aria-label="Mark step 5 done"><div><h3>Music</h3><p>Every production gets a real music bed — made in Song Studio, never silent, never a plain tone.</p><a href="https://nakeymasi-coder.github.io/glam-song-studio/" target="_blank" rel="noopener">OPEN SONG STUDIO →</a></div></div>
+      <div class="step"><div class="num">6</div><input type="checkbox" class="stepcheck" aria-label="Mark step 6 done"><div><h3>Filming</h3><p>The Film Crew Farm does the filming — her 12-agent crew takes the locked script and shoots it scene by scene.</p><a href="https://nakeymasi-coder.github.io/film-crew-farm/" target="_blank" rel="noopener">OPEN FILM CREW FARM →</a></div></div>
+      <div class="step"><div class="num">7</div><input type="checkbox" class="stepcheck" aria-label="Mark step 7 done"><div><h3>Dex QC Gate → Premiere</h3><p>Dex Sterling, Director of Quality, checks the finished cut end to end. Only a clean cut premieres — on Glam TV.</p><a href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener">WATCH ON GLAM TV →</a></div></div>
     </div>
   </section>
 
@@ -144,6 +156,35 @@ footer a{flex:1;text-align:center;text-decoration:none;font-weight:800;font-size
     <div class="card"><div class="body"><h3>🎄 A Glam Carol</h3><p>Glam's holiday special — sparkle, heart, and a lesson in every light.</p><span class="badge soon">COMING SOON</span></div></div>
   </section>
 
+  <section class="screen" id="s-slate">
+    <h2>🗂️ Project Slate</h2>
+    <p class="sub">Everything in development, in one place. Add a project, name its kind, and track what stage it's at.</p>
+    <label for="slateTitle">PROJECT TITLE</label>
+    <input id="slateTitle" placeholder="e.g. The Grape Divide">
+    <label for="slateKind">KIND</label>
+    <select id="slateKind">
+      <option>Movie</option>
+      <option>Skit</option>
+      <option>Commercial</option>
+      <option>Series Episode</option>
+    </select>
+    <label for="slateStage">STAGE</label>
+    <select id="slateStage">
+      <option>Treatment</option>
+      <option>Script</option>
+      <option>Casting</option>
+      <option>Filming</option>
+      <option>QC</option>
+      <option>Premiere</option>
+    </select>
+    <button class="buildbtn" id="slateAdd">➕ Add to Slate</button>
+    <div id="slateList" style="margin-top:16px">
+      <div class="slatecard"><div><h3>Ruby &amp; Pearl</h3><p>Movie</p></div><span class="badge">TREATMENT</span></div>
+      <div class="slatecard"><div><h3>Second Act Studio</h3><p>Series Episode</p></div><span class="badge">CASTING</span></div>
+      <div class="slatecard"><div><h3>A Glam Carol</h3><p>Movie</p></div><span class="badge">TREATMENT</span></div>
+    </div>
+  </section>
+
   <p class="credit">Glam Movie Studio · A Glam Hustle Hub production house · Treatment first, always</p>
 </main>
 
@@ -189,6 +230,34 @@ document.getElementById('copyBtn').onclick=function(){
  else{out.select();document.execCommand('copy');}
  var b=document.getElementById('copyBtn');b.textContent='✅ Copied!';
  setTimeout(function(){b.textContent='📋 Copy Treatment';},1800);
+};
+/* Studio Floor checklist — in-memory only */
+var stepBoxes=document.querySelectorAll('.stepcheck');
+function updateProgress(){
+ var done=0;stepBoxes.forEach(function(b){if(b.checked)done++;});
+ var pct=stepBoxes.length?Math.round(done/stepBoxes.length*100):0;
+ document.getElementById('progBar').style.width=pct+'%';
+ document.getElementById('progLabel').textContent=pct+'% ready to premiere';
+}
+stepBoxes.forEach(function(b){b.addEventListener('change',updateProgress);});
+updateProgress();
+/* Project Slate — in-memory only */
+function addSlateCard(title,kind,stage){
+ var card=document.createElement('div');card.className='slatecard';
+ var left=document.createElement('div');
+ var h=document.createElement('h3');h.textContent=title;
+ var p=document.createElement('p');p.textContent=kind;
+ left.appendChild(h);left.appendChild(p);
+ var badge=document.createElement('span');badge.className='badge';badge.textContent=stage.toUpperCase();
+ card.appendChild(left);card.appendChild(badge);
+ document.getElementById('slateList').appendChild(card);
+}
+document.getElementById('slateAdd').onclick=function(){
+ var titleEl=document.getElementById('slateTitle');
+ var title=titleEl.value.trim();
+ if(!title){titleEl.focus();return;}
+ addSlateCard(title,document.getElementById('slateKind').value,document.getElementById('slateStage').value);
+ titleEl.value='';titleEl.focus();
 };
 </script>
 </body>
