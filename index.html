@@ -147,6 +147,24 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
 .egg-clapper.egg-snap .egg-clapper-bar{transform:rotate(-14deg)}
 .egg-sub{display:block;color:#39c2d7;font-size:0.72rem;margin-top:0.2rem}
 @media (prefers-reduced-motion: reduce){.egg-clapper,.egg-clapper-bar{transition:none}}
+
+/* v8 · Gemini Argon — Now Showing poster switcher; QC'd by Indigo */
+.poster-stage{position:relative;border-radius:16px;padding:22px 18px;text-align:center;border:1px solid rgba(243,210,122,0.55);color:#ffffff;opacity:1;transition:opacity 0.25s ease;margin-top:14px}
+.poster-stage.p1{background:linear-gradient(135deg,#8a1538 0%,#5e113f 55%,#2b092c 100%)}
+.poster-stage.p2{background:linear-gradient(135deg,#0b4f5c 0%,#0d6e5b 55%,#073b32 100%)}
+.poster-stage.p3{background:linear-gradient(135deg,#0b1636 0%,#103b63 55%,#168fea 100%)}
+.poster-stage.swap{opacity:0}
+.poster-emoji{font-size:54px;line-height:1}
+.poster-title{font-size:22px;font-weight:900;margin:8px 0 4px;color:#f3d27a}
+.poster-tag{font-size:13.5px;opacity:0.92}
+.poster-watch{display:inline-block;margin-top:12px;background:linear-gradient(135deg,#f3d27a 0%,#d4af37 50%,#b8860b 100%);color:#0b0f19;font-weight:700;text-decoration:none;padding:0.55rem 1.25rem;border-radius:999px}
+.poster-watch:hover{filter:brightness(1.08)}
+.poster-nav{display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-top:12px}
+.poster-arrow{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.28);color:#ffffff;font-size:1.35rem;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit}
+.poster-dots{display:flex;gap:7px;justify-content:center;align-items:center}
+.poster-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.35);border:none;padding:0;cursor:pointer}
+.poster-dot.on{background:#f3d27a}
+@media (prefers-reduced-motion: reduce){.poster-stage{transition:none}}
 </style>
 </head>
 <body>
@@ -243,6 +261,7 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
     <div class="carpet"></div>
     <div id="premiereCountdown">🎬 Next Premiere Night: Friday 8 PM ET</div>
     <div class="rollwrap"><button id="rollBtn" class="rollbtn" type="button">🎬 Roll the Premiere</button></div>
+    <div class="poster-stage p1" id="posterStage"><div class="poster-emoji" id="posterEmoji">🍓</div><div class="poster-title" id="posterTitle"></div><div class="poster-tag" id="posterTag"></div><a class="poster-watch" id="posterWatch" href="#" target="_blank" rel="noopener">▶ Watch</a><div class="poster-nav"><button class="poster-arrow" id="posterPrev" type="button" aria-label="Previous poster">‹</button><div class="poster-dots" id="posterDots"></div><button class="poster-arrow" id="posterNext" type="button" aria-label="Next poster">›</button></div></div>
     <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/fruit-bowl-secrets.html" target="_blank" rel="noopener"><div class="body"><h3>🍓 Fruit Bowl Secrets</h3><p>Pippa, Berry &amp; Gigi — the little kitchen crew with big secrets. Episodes playing on the show page.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
     <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/crystal-heart.html" target="_blank" rel="noopener"><div class="body"><h3>💎 The Crystal Heart</h3><p>Scarlett &amp; Rune — a snowy adventure about a brave heart and the friend who guards it.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
     <a class="card" href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener"><div class="body"><h3>📺 Glam TV</h3><p>Watch everything in one place — her own station, playing her shows 24/7.</p><span class="badge">WATCH GLAM TV</span></div></a>
@@ -399,6 +418,11 @@ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded"
 var eggTimer=null;
 function showEgg(){var clapper=document.getElementById("eggClapper");if(!clapper)return;if(eggTimer)clearTimeout(eggTimer);clapper.classList.add("egg-active","egg-snap");setTimeout(function(){clapper.classList.remove("egg-snap");},220);eggTimer=setTimeout(function(){clapper.classList.remove("egg-active");},3200);}
 (function(){var buffer="";var secretWord="ACTION";document.addEventListener("keydown",function(e){var tag=e.target&&e.target.tagName?e.target.tagName.toUpperCase():"";if(tag==="INPUT"||tag==="TEXTAREA"||tag==="SELECT"||(e.target&&e.target.isContentEditable)){return;}if(!e.key||e.key.length!==1)return;buffer=(buffer+e.key.toUpperCase()).slice(-secretWord.length);if(buffer===secretWord){buffer="";showEgg();}});var title=document.querySelector(".hero h1");var taps=0;var tapTimer=null;if(title){title.style.cursor="pointer";title.addEventListener("click",function(){taps++;if(tapTimer)clearTimeout(tapTimer);tapTimer=setTimeout(function(){taps=0;},1600);if(taps>=5){taps=0;showEgg();}});}})();
+
+/* v8 · Gemini Argon — poster switcher */
+var POSTERS=[{title:"Fruit Bowl Secrets",emoji:"\uD83C\uDF53",tag:"Pippa, Berry & Gigi — the little kitchen crew with big secrets.",gradient:"p1",url:"https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/fruit-bowl-secrets.html"},{title:"The Crystal Heart",emoji:"\uD83D\uDC8E",tag:"Scarlett & Rune — a snowy adventure about a brave heart.",gradient:"p2",url:"https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/crystal-heart.html"},{title:"AI After 40",emoji:"\uD83C\uDF99\uFE0F",tag:"Renee & Marcus — AI made simple for beginners 40+, on Glam TV.",gradient:"p3",url:"https://nakeymasi-coder.github.io/glam-tv/"}];
+function initPosterSwitcher(){var stage=document.getElementById("posterStage");var emojiEl=document.getElementById("posterEmoji");var titleEl=document.getElementById("posterTitle");var tagEl=document.getElementById("posterTag");var watchEl=document.getElementById("posterWatch");var prevBtn=document.getElementById("posterPrev");var nextBtn=document.getElementById("posterNext");var dotsWrap=document.getElementById("posterDots");if(!stage||!emojiEl||!titleEl||!tagEl||!watchEl||!prevBtn||!nextBtn||!dotsWrap){return;}var currentIndex=0;var autoTimer=null;var swapTimer=null;var dots=[];dotsWrap.innerHTML="";for(var i=0;i<POSTERS.length;i++){(function(idx){var dot=document.createElement("button");dot.type="button";dot.className="poster-dot"+(idx===0?" on":"");dot.setAttribute("aria-label","Show poster "+(idx+1));dot.addEventListener("click",function(){show(idx,false);resetAutoTimer();});dotsWrap.appendChild(dot);dots.push(dot);})(i);}function applyContent(index){var item=POSTERS[index];emojiEl.textContent=item.emoji;titleEl.textContent=item.title;tagEl.textContent=item.tag;watchEl.href=item.url;stage.classList.remove("p1","p2","p3");stage.classList.add(item.gradient);for(var j=0;j<dots.length;j++){if(j===index){dots[j].classList.add("on");}else{dots[j].classList.remove("on");}}}function show(index,immediate){currentIndex=(index+POSTERS.length)%POSTERS.length;if(swapTimer){clearTimeout(swapTimer);swapTimer=null;}if(immediate){stage.classList.remove("swap");applyContent(currentIndex);return;}stage.classList.add("swap");swapTimer=setTimeout(function(){applyContent(currentIndex);stage.classList.remove("swap");},250);}function resetAutoTimer(){if(autoTimer){clearInterval(autoTimer);}autoTimer=setInterval(function(){show(currentIndex+1,false);},6000);}prevBtn.addEventListener("click",function(){show(currentIndex-1,false);resetAutoTimer();});nextBtn.addEventListener("click",function(){show(currentIndex+1,false);resetAutoTimer();});show(0,true);resetAutoTimer();}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initPosterSwitcher);}else{initPosterSwitcher();}
 </script>
 <div id="toast" class="toast">✨ Treatment copied — break a leg!</div>
 <div id="eggClapper" class="egg-clapper" aria-hidden="true"><div class="egg-clapper-bar"></div>🎬 SCENE 1 • TAKE 1: QUIET ON SET!<span class="egg-sub">EXECUTIVE PRODUCER MODE UNLOCKED</span></div>
