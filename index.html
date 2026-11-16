@@ -102,6 +102,17 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
 .slatecard::before{content:'';position:absolute;top:0;left:0;right:0;height:13px;background:repeating-linear-gradient(45deg,#f5f5f5 0 13px,#101014 13px 26px);border-bottom:2px solid rgba(255,255,255,.5)}
 .slatecard p{color:#b9c2d4}
 #s-crew .bigcard{background:linear-gradient(145deg,#070a1c,#1c2440 75%);border:2px solid rgba(243,210,122,.65)}
+
+/* v5 · Gemini Argon (Code & analysis) — ticker + door shine, checked by Indigo */
+.ticker{background:#000000;border-top:1px solid #d4af37;border-bottom:1px solid #d4af37;overflow:hidden;width:100%;padding:0.5rem 0;box-sizing:border-box}
+.ticker-track{display:inline-flex;white-space:nowrap;animation:ticker-scroll 30s linear infinite;will-change:transform}
+.ticker-track span{color:#ffffff;font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding-right:0.5rem}
+@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.door{position:relative;overflow:hidden}
+.door::after{content:"";position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.55) 50%,rgba(255,255,255,0) 100%);transform:skewX(-20deg);transition:left 0.6s ease;pointer-events:none}
+.door:hover::after{left:150%}
+@media (prefers-reduced-motion: reduce){.ticker-track{animation:none}.door::after{transition:none}}
+#premiereCountdown{background:linear-gradient(90deg,rgba(243,210,122,.16),rgba(47,127,224,.20));border:1px solid rgba(243,210,122,.55);border-radius:12px;padding:12px 14px;font-weight:900;text-align:center;margin:12px 0;color:#ffeec2;font-size:15px}
 </style>
 </head>
 <body>
@@ -123,6 +134,12 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
     </div>
     <div class="filmstrip"></div>
   </div>
+
+  <div class="ticker" aria-label="Now Showing Ticker">
+  <div class="ticker-track">
+    <span>NOW SHOWING ★ FRUIT BOWL SECRETS ★ THE CRYSTAL HEART ★ AI AFTER 40 ★ COMING SOON: RUBY &amp; PEARL ★ SECOND ACT STUDIO ★ A GLAM CAROL ★ NOW SHOWING ★ FRUIT BOWL SECRETS ★ THE CRYSTAL HEART ★ AI AFTER 40 ★ COMING SOON: RUBY &amp; PEARL ★ SECOND ACT STUDIO ★ A GLAM CAROL ★</span>
+  </div>
+</div>
 
   <nav class="tabs">
     <button class="on" data-s="floor">🎬 The Lot</button>
@@ -188,6 +205,7 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
     <div class="bulbs"></div>
     <h2>🌟 Premiere Theater — Now Showing</h2>
     <div class="carpet"></div>
+    <div id="premiereCountdown">🎬 Next Premiere Night: Friday 8 PM ET</div>
     <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/fruit-bowl-secrets.html" target="_blank" rel="noopener"><div class="body"><h3>🍓 Fruit Bowl Secrets</h3><p>Pippa, Berry &amp; Gigi — the little kitchen crew with big secrets. Episodes playing on the show page.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
     <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/crystal-heart.html" target="_blank" rel="noopener"><div class="body"><h3>💎 The Crystal Heart</h3><p>Scarlett &amp; Rune — a snowy adventure about a brave heart and the friend who guards it.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
     <a class="card" href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener"><div class="body"><h3>📺 Glam TV</h3><p>Watch everything in one place — her own station, playing her shows 24/7.</p><span class="badge">WATCH GLAM TV</span></div></a>
@@ -302,6 +320,31 @@ document.getElementById('slateAdd').onclick=function(){
  addSlateCard(title,document.getElementById('slateKind').value,document.getElementById('slateStage').value);
  titleEl.value='';titleEl.focus();
 };
+
+/* v5 · Premiere Night countdown — structure by Gemini Argon, timezone math fixed by Indigo */
+function premiereInfo(p){
+  var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  var dow=days[p.weekday];
+  var nowMs=Date.UTC(+p.year,(+p.month)-1,+p.day,(+p.hour)%24,+p.minute,+p.second||0);
+  var add=(5-dow+7)%7;
+  var targetMs=Date.UTC(+p.year,(+p.month)-1,+p.day+add,20,0,0);
+  if(add===0){
+    if(nowMs>=targetMs&&nowMs<targetMs+3600000){return "🎬 Premiere Night is TONIGHT at 8 PM ET — it's on now!";}
+    if(nowMs>=targetMs+3600000){targetMs+=7*86400000;}
+  }
+  var totalMinutes=Math.floor((targetMs-nowMs)/60000);
+  var d=Math.floor(totalMinutes/1440),hh=Math.floor((totalMinutes%1440)/60),mm=totalMinutes%60;
+  return "🎬 Next Premiere Night: Friday 8 PM ET — in "+d+"d "+hh+"h "+mm+"m";
+}
+function updatePremiereCountdown(){
+  var el=document.getElementById("premiereCountdown");
+  if(!el)return;
+  var parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/Indiana/Indianapolis",weekday:"short",year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric",second:"numeric",hour12:false}).formatToParts(new Date());
+  var p={};parts.forEach(function(x){p[x.type]=x.value;});
+  el.textContent=premiereInfo(p);
+}
+updatePremiereCountdown();
+setInterval(updatePremiereCountdown,60000);
 </script>
 </body>
 </html>
