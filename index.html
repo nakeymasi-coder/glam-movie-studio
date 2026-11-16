@@ -113,6 +113,18 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
 .door:hover::after{left:150%}
 @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}.door::after{transition:none}}
 #premiereCountdown{background:linear-gradient(90deg,rgba(243,210,122,.16),rgba(47,127,224,.20));border:1px solid rgba(243,210,122,.55);border-radius:12px;padding:12px 14px;font-weight:900;text-align:center;margin:12px 0;color:#ffeec2;font-size:15px}
+
+/* v6 · Gemini Argon (Code & analysis) — stage doors, ticker pause, confetti, roll button; QC'd by Indigo */
+.door{cursor:pointer}
+.step.closed .stepbody{display:none}
+.door .tgl{float:right;color:#d4af37;font-weight:700}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.theater{position:relative;overflow:hidden}
+.confetti-bit{position:absolute;width:9px;height:14px;top:-20px;pointer-events:none;border-radius:2px;z-index:60}
+@media (prefers-reduced-motion: reduce){.confetti-bit{display:none}}
+.rollbtn{background:linear-gradient(135deg,#f3d27a 0%,#d4af37 50%,#b8860b 100%);color:#0b0f19;font-weight:700;border:none;border-radius:999px;padding:0.75rem 1.5rem;cursor:pointer;font-size:1rem;display:inline-block;font-family:inherit}
+.rollbtn:hover{filter:brightness(1.08)}
+.rollwrap{text-align:center;margin:10px 0 4px}
 </style>
 </head>
 <body>
@@ -206,6 +218,7 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
     <h2>🌟 Premiere Theater — Now Showing</h2>
     <div class="carpet"></div>
     <div id="premiereCountdown">🎬 Next Premiere Night: Friday 8 PM ET</div>
+    <div class="rollwrap"><button id="rollBtn" class="rollbtn" type="button">🎬 Roll the Premiere</button></div>
     <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/fruit-bowl-secrets.html" target="_blank" rel="noopener"><div class="body"><h3>🍓 Fruit Bowl Secrets</h3><p>Pippa, Berry &amp; Gigi — the little kitchen crew with big secrets. Episodes playing on the show page.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
     <a class="card" href="https://nakeymasi-coder.github.io/GLAM-HUSTLE-HUB/crystal-heart.html" target="_blank" rel="noopener"><div class="body"><h3>💎 The Crystal Heart</h3><p>Scarlett &amp; Rune — a snowy adventure about a brave heart and the friend who guards it.</p><span class="badge">WATCH THE SHOW PAGE</span></div></a>
     <a class="card" href="https://nakeymasi-coder.github.io/glam-tv/" target="_blank" rel="noopener"><div class="body"><h3>📺 Glam TV</h3><p>Watch everything in one place — her own station, playing her shows 24/7.</p><span class="badge">WATCH GLAM TV</span></div></a>
@@ -345,6 +358,13 @@ function updatePremiereCountdown(){
 }
 updatePremiereCountdown();
 setInterval(updatePremiereCountdown,60000);
+
+/* v6 · Gemini Argon — stage doors open/close */
+function initStageDoors(){var steps=document.querySelectorAll(".step");for(var i=0;i<steps.length;i++){(function(step){var door=step.querySelector(".door");if(!door)return;var tgl=document.createElement("span");tgl.className="tgl";tgl.textContent="▾";door.appendChild(tgl);door.addEventListener("click",function(){var isClosed=step.classList.toggle("closed");tgl.textContent=isClosed?"▸":"▾";});})(steps[i]);}}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initStageDoors);}else{initStageDoors();}
+/* v6 · Gemini Argon — Roll the Premiere confetti */
+function initRollPremiere(){var btn=document.getElementById("rollBtn");if(!btn)return;var palette=["#f3d27a","#39c2d7","#ffffff","#e23b3b","#2f7fe0"];btn.addEventListener("click",function(){var theater=document.querySelector(".theater");if(!theater)return;var fallDistance=theater.clientHeight+40;for(var i=0;i<42;i++){(function(){var bit=document.createElement("div");bit.className="confetti-bit";bit.style.backgroundColor=palette[Math.floor(Math.random()*palette.length)];bit.style.left=(Math.random()*100).toFixed(2)+"%";theater.appendChild(bit);var duration=Math.floor(1400+Math.random()*1200);var swayMid=(Math.random()-0.5)*90;var swayEnd=(Math.random()-0.5)*140;var rotMid=(Math.random()-0.5)*360;var rotEnd=(Math.random()-0.5)*720;if(typeof bit.animate==="function"){var anim=bit.animate([{transform:"translate(0px, 0px) rotate(0deg)",opacity:1},{transform:"translate("+swayMid.toFixed(1)+"px, "+(fallDistance*0.5).toFixed(1)+"px) rotate("+rotMid.toFixed(0)+"deg)",opacity:1,offset:0.5},{transform:"translate("+swayEnd.toFixed(1)+"px, "+fallDistance.toFixed(1)+"px) rotate("+rotEnd.toFixed(0)+"deg)",opacity:0.85}],{duration:duration,easing:"cubic-bezier(0.25, 0.46, 0.45, 0.94)",fill:"forwards"});anim.onfinish=function(){if(bit.parentNode){bit.parentNode.removeChild(bit);}};}else{if(bit.parentNode){bit.parentNode.removeChild(bit);}}})();}});}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initRollPremiere);}else{initRollPremiere();}
 </script>
 </body>
 </html>
