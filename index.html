@@ -166,6 +166,13 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
 .poster-dot.on{background:#f3d27a}
 @media (prefers-reduced-motion: reduce){.poster-stage{transition:none}}
 
+/* v11 · Indigo — launch plan sticky note on the Slate board */
+.sticky{background:linear-gradient(180deg,#fff6c9,#ffe97a);color:#3a2f04;border-radius:4px 4px 14px 4px;padding:16px 16px 13px;box-shadow:0 10px 22px rgba(0,0,0,.4);transform:rotate(-1.2deg);margin:4px 2px 18px;position:relative}
+.sticky::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(2deg);width:92px;height:20px;background:rgba(57,194,215,.5);border-radius:2px}
+.sticky h3{font-size:17px;margin-bottom:7px;color:#3a2f04}
+.sticky ul{margin:0 0 4px 17px;font-size:13.5px;line-height:1.55;color:#4a3d08}
+.sticky p{font-size:12.5px;font-weight:800;letter-spacing:.4px;color:#8a5f04;margin-top:8px}
+
 /* v9 · Gemini Argon — stage meter, Coming Soon drawer; QC'd by Indigo */
 #stageMeter{color:#f3d27a;font-weight:800;font-size:13.5px;margin-top:8px;text-align:left}
 .soon-btn{display:inline-block;margin-top:14px;background:linear-gradient(135deg,#f3d27a 0%,#d4af37 50%,#b8860b 100%);color:#0b0f19;font-weight:700;padding:0.55rem 1.25rem;border-radius:999px;cursor:pointer;border:none;font-size:0.95rem;font-family:inherit}
@@ -296,6 +303,7 @@ textarea.out{font-family:'Courier New',Courier,monospace;background:linear-gradi
   <section class="screen" id="s-slate">
     <h2>🗂️ Project Slate</h2>
     <p class="sub">Everything in development, in one place. Add a project, name its kind, and track what stage it's at.</p>
+    <div class="sticky"><h3>🚀 LAUNCH PLAN — The Movie Studio Workflow</h3><ul><li><b>Sell the outcome, not the page:</b> "Make the TikTok dramas you watch — ONE workflow for every animation, built for beginners 40+. First episode this weekend, in minutes."</li><li><b>Proof:</b> the Premiere Theater is the demo — Club Rivals, Fruit Bowl Secrets, The Crystal Heart. Finished episodes sell it.</li><li><b>Funnel:</b> Glam's lives — one full drama built start-to-finish through the studio, clipped into TikToks + Reels all week.</li><li><b>Ladder:</b> free live demo → the Studio workflow → The Glam Vault (where it lives, with the community).</li><li><b>Timing:</b> doors open AFTER Claude's audit lands and Club Rivals Episode 1 finishes through the new workflow — the finished episode is the receipt.</li></ul><p>📌 THINKING AHEAD — NOT LAUNCHED YET. PARKED HERE SO WE DON'T LOSE IT.</p></div>
     <label for="slateTitle">PROJECT TITLE</label>
     <input id="slateTitle" placeholder="e.g. The Grape Divide">
     <label for="slateKind">KIND</label>
